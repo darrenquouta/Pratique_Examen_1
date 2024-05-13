@@ -63,7 +63,8 @@ class Fournisseur:
         except OSError:
             return False
 
-    def deserialiser_fournisseur(self, nom_fichier):
+    @staticmethod
+    def deserialiser_fournisseur(nom_fichier):
         """
         Désérialise un objet de type fournisseur
         :param nom_fichier: Le nom du fichier à désérialiser
@@ -77,17 +78,21 @@ class Fournisseur:
         except OSError:
             return False
 
-    def ajouter_medicament_patient(self, numero_patient, medicament):
+    def ajouter_medicament_patient(self, numero_patient, medicament_ajoute):
         """
         Ajoute un médicament à un patient
         :param numero_patient: Le numéro du patient recherché
-        :param medicament: Le médicament à ajouter
-        :return: None
+        :param medicament_ajoute: Le médicament à ajouter
+        :return: True si le médicament a été ajouté
         """
         for patient in self.liste_patients:
             if patient.numero_patient == numero_patient:
-                patient.liste_medicaments_achete.append(medicament)
-                break
+                for medicament in patient.liste_medicaments_achete:
+                    if medicament.code_medicament == medicament_ajoute.code_medicament:
+                        raise ValueError("Ce médicament est déjà consommé par le patient !")
+                else:
+                    patient.liste_medicaments_achete.append(medicament_ajoute)
+                    return True
 
     @classmethod
     def afficher_liste_fournisseurs(cls):
