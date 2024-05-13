@@ -71,8 +71,7 @@ class Patient:
         else:
             raise ValueError("La date de naissance du patient doit être valide !")
 
-    # Ici
-    def __calculer_age(self):
+    def _calculer_age(self):
         """
         Calcule l'âge du patient
         :return: L'âge du patient en années
@@ -95,7 +94,7 @@ class Patient:
         Retourne True si le patient est adulte, False s'il ne l'est pas
         :return: True si le patient est adulte, False s'il ne l'est pas
         """
-        age = self.__calculer_age()
+        age = self._calculer_age()
         if age >= 18:
             return True
         else:
