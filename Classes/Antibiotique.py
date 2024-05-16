@@ -43,5 +43,5 @@ class Antibiotique(Medicament):
                 f"Nom chimique : {self._nom_chimique}\n"
                 f"Nom commercial : {self._nom_commercial}\n"
                 f"Prix : {self._prix}\n"
-                f"Catégorie : {self._categorie_medicament}"
+                f"Catégorie : {self.categorie_medicament}"
                 f"Durée du prise maximale : {self._duree_prise_maximale} jours")

@@ -21,7 +21,7 @@ class Medicament:
         self._nom_chimique = p_nom_chimique
         self._nom_commercial = p_nom_commercial
         self._prix = p_prix
-        self._categorie_medicament = p_categorie_medicament
+        self.categorie_medicament = p_categorie_medicament
         if p_liste_patients_achete is None:
             self.liste_patients_achete = []
         else:
@@ -35,7 +35,7 @@ class Medicament:
     @code_medicament.setter
     def code_medicament(self, v_code_medicament):
         if (isinstance(v_code_medicament, str) and v_code_medicament[:2].isalpha()
-                and v_code_medicament[-3:].isnumeric()):
+                and v_code_medicament[-3:].isnumeric() and len(v_code_medicament) == 6):
             self._code_medicament = v_code_medicament
         else:
             raise ValueError("Le code du médicament doit être composé de 3 lettres au début et 3 chiffres à la fin !")
@@ -73,18 +73,6 @@ class Medicament:
         else:
             raise ValueError("Le prix du médicament doit se situer entre 5 et 100$")
 
-    @property
-    def categorie_medicament(self):
-        return self._categorie_medicament
-
-    @categorie_medicament.setter
-    def categorie_medicament(self, v_categorie_medicament):
-        if (isinstance(v_categorie_medicament, str) and
-                v_categorie_medicament in ["Antibiotique", "Analgésique", "Corticoïde"]):
-            self._categorie_medicament = v_categorie_medicament
-        else:
-            raise ValueError("La catégorie du médicament doit être soit [Antibiotique/Analgésique/Corticoïde] !")
-
     def __add__(self, medicament):
         """
         Calcule le prix total de deux médicaments
@@ -103,4 +91,4 @@ class Medicament:
                 f"Nom chimique : {self._nom_chimique}\n"
                 f"Nom commercial : {self._nom_commercial}\n"
                 f"Prix : {self._prix}\n"
-                f"Catégorie : {self._categorie_medicament}")
+                f"Catégorie : {self.categorie_medicament}")

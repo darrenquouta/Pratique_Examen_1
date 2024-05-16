@@ -63,7 +63,8 @@ class Fournisseur:
         except OSError:
             return False
 
-    def deserialiser_fournisseur(self, nom_fichier):
+    @staticmethod
+    def deserialiser_fournisseur(nom_fichier):
         """
         Désérialise un objet de type fournisseur
         :param nom_fichier: Le nom du fichier à désérialiser
