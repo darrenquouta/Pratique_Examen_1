@@ -77,16 +77,17 @@ class Patient:
         :return: L'âge du patient en années
         """
         age = int(datetime.now().year - self.date_naissance.year)
-        if datetime.now().month > self.date_naissance.month:
+        if self.date_naissance.month > datetime.now().month:
+            age = age - 1
             return age
-        else:
-            if self.date_naissance.month > datetime.now().month:
-                age = age + 1
+        elif self.date_naissance.month == datetime.now().month:
+            if self.date_naissance.day > datetime.now().day:
+                age = age - 1
                 return age
-            elif self.date_naissance.month == datetime.now().month:
-                if self.date_naissance.day >= datetime.now().day:
-                    age = age + 1
-                    return age
+            else:
+                return age
+        else:
+            return age
 
     def est_adulte(self):
         """
